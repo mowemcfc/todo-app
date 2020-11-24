@@ -2,19 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 
+class TodoListAddEntryForm extends React.Component {
+  render() {
+    return (
+      <form className="todoListAddEntryForm Form">
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category"></input>
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description"></input>
+        <input type="submit" value="Add" />
+      </form>
+    )
+  }
+}
 
 class TodoListHeaderRow extends React.Component {
   render() {
     return (
       <tr className="todoListHeaderRow">
-        <th className="tableHeaderText dateHeader">Date</th>
+        <th classNameName="tableHeaderText dateHeader">Date</th>
         <th className="tableHeaderText categoryHeader">Category</th>
         <th className="tableHeaderText descriptionHeader">Description</th>
       </tr>
     )  
   }
 }
-
 
 class TodoListBodyRow extends React.Component {
   render() {
@@ -77,6 +89,7 @@ class TodoList extends React.Component {
           <TodoListHeader />
           <TodoListBody />
         </table>
+        <TodoListAddEntryForm/>,
       </div>
     )
   }
