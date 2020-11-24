@@ -3,9 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css'
 
 class TodoListAddEntryForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }  
+
+
+  handleSubmit(event) {
+    alert("Entry added!");
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <form className="todoListAddEntryForm Form">
+      <form className="todoListAddEntryForm Form" onSubmit={this.handleSubmit}>
         <label for="category">Category</label>
         <input type="text" id="category" name="category"></input>
         <label for="description">Description</label>
