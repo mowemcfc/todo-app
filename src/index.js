@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 
-//TODO: fix 'each child in a list shoudl have a unique key prop' issue
+//TODO: fix 'each child in a list should have a unique key prop' issue
 
 class TodoListAddEntryForm extends React.Component {
   constructor(props) {
@@ -65,12 +65,29 @@ class TodoListHeaderRow extends React.Component {
 }
 
 class TodoListBodyRow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {idx: this.props.id, date: this.props.date, description: this.props.description};
+    console.log(this.state.idx)
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(e) {
+    console.log(this.state.idx)
+    this.props.deleteTodo(this.state.idx);
+    e.preventDefault();
+  }
+
   render() {
     return (
-      <tr className="todoListRow">
+      <tr className="todoListRow" key={this.state.idx}>
         <td className="tableText dateField">{this.props.date}</td>
         <td className="tableText categoryField">{this.props.category}</td>
         <td className="tableText descriptionField">{this.props.description}</td>
+        <td className="tableText deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
+          <input type="submit" className="deleteTodoButton" value="Delete:)" onClick={this.handleDelete}></input>
+        </td>
+
       </tr> 
     )  
   }
@@ -81,7 +98,7 @@ class TodoListBody extends React.Component {
     return (
       <tbody className="todoListBody">
         {this.props.todos.map((todo, index) => 
-          {return <TodoListBodyRow date={todo.date} category={todo.category} description={todo.description}/>}
+          {return <TodoListBodyRow id={index} date={todo.date} category={todo.category} description={todo.description} deleteTodo={this.props.deleteTodo}/>}
         )}
       </tbody>
     )
@@ -102,14 +119,22 @@ class TodoListHeader extends React.Component
 
 class TodoList extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {todos: []}
-    this.addTodo = this.addTodo.bind(this)
+    super(props);
+    this.state = {todos: []};
+    this.addTodo = this.addTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }  
 
   addTodo(todo) {
-    this.state.todos.push(todo)
-    this.setState({todos: this.state.todos})
+    this.state.todos.push(todo);
+    this.setState({todos: this.state.todos});
+    reload(this.state.todos);
+  }
+
+  deleteTodo(index) {
+    console.log(index);
+    delete this.state.todos[index];
+    this.setState({todos: this.state.todos});
     reload(this.state.todos);
   }
 
@@ -118,7 +143,7 @@ class TodoList extends React.Component {
       <div className="TodoListContainer">
         <table className="todoList">
           <TodoListHeader />
-          <TodoListBody todos={this.state.todos}/>
+          <TodoListBody deleteTodo={this.deleteTodo} todos={this.state.todos}/>
         </table>
         <TodoListAddEntryForm addTodo={this.addTodo}/>,
       </div>
