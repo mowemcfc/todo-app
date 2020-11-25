@@ -2,27 +2,50 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 
+//TODO: fix 'each child in a list shoudl have a unique key prop' issue
+
 class TodoListAddEntryForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {category: '', description: ''};
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }  
 
 
-  handleSubmit(event) {
-    alert("Entry added!");
-    event.preventDefault();
+  handleSubmit(e) {
+    const todo = {
+      date: new Date().toDateString(),
+      category: this.state.category,
+      description: this.state.description
+    }
+    this.props.addTodo(todo)
+    e.preventDefault();
+  }
+
+  handleCategoryChange(e) {
+    this.setState({category: e.target.value});
+  }
+
+  handleDescriptionChange(e) {
+    this.setState({description: e.target.value})
   }
 
   render() {
     return (
       <form className="todoListAddEntryForm Form" onSubmit={this.handleSubmit}>
-        <label for="category">Category</label>
-        <input type="text" id="category" name="category"></input>
-        <label for="description">Description</label>
-        <input type="text" id="description" name="description"></input>
+        <label>
+          Category
+          <input type="text" value={this.state.category} onChange={this.handleCategoryChange} id="category" name="category"></input>
+        </label>
+
+        <label >
+          Description
+          <input type="text" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
+         </label>
+
         <input type="submit" value="Add" />
       </form>
     )
@@ -33,7 +56,7 @@ class TodoListHeaderRow extends React.Component {
   render() {
     return (
       <tr className="todoListHeaderRow">
-        <th classNameName="tableHeaderText dateHeader">Date</th>
+        <th className="tableHeaderText dateHeader">Date</th>
         <th className="tableHeaderText categoryHeader">Category</th>
         <th className="tableHeaderText descriptionHeader">Description</th>
       </tr>
@@ -54,29 +77,12 @@ class TodoListBodyRow extends React.Component {
 }
 
 class TodoListBody extends React.Component {
-  
-  renderRow(props) {
-    return <TodoListBodyRow date={props.date} category={props.category} description={props.description}/>;  
-  }
-
   render() {
-    const rowData1 = {
-      date: "08Nov10",
-      category: "Uni",
-      description: "Clean Car"
-    }
-
-    const rowData2 = {
-      date: "09Nov20",
-      category: "Life",
-      description: "Do assignment"
-
-    }
     return (
-      <tbody>
-        {this.renderRow(rowData1)}
-        {this.renderRow(rowData2)}
-        {this.renderRow(rowData2)}
+      <tbody className="todoListBody">
+        {this.props.todos.map((todo, index) => 
+          {return <TodoListBodyRow date={todo.date} category={todo.category} description={todo.description}/>}
+        )}
       </tbody>
     )
   }
@@ -95,17 +101,36 @@ class TodoListHeader extends React.Component
 }
 
 class TodoList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {todos: []}
+    this.addTodo = this.addTodo.bind(this)
+  }  
+
+  addTodo(todo) {
+    this.state.todos.push(todo)
+    this.setState({todos: this.state.todos})
+    reload(this.state.todos);
+  }
+
   render() {
     return (
       <div className="TodoListContainer">
         <table className="todoList">
           <TodoListHeader />
-          <TodoListBody />
+          <TodoListBody todos={this.state.todos}/>
         </table>
-        <TodoListAddEntryForm/>,
+        <TodoListAddEntryForm addTodo={this.addTodo}/>,
       </div>
     )
   }
+}
+
+function reload(todos) {
+  ReactDOM.render(
+    <TodoList todos={todos}/>,
+    document.getElementById('root')
+  )
 }
 
 
