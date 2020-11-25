@@ -67,7 +67,7 @@ class TodoListHeaderRow extends React.Component {
 class TodoListBodyRow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {idx: this.props.id, date: this.props.date, description: this.props.description};
+    this.state = {idx: this.props.id, todo: this.props.todo};
     this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -77,11 +77,12 @@ class TodoListBodyRow extends React.Component {
   }
 
   render() {
+    let todo = this.state.todo;
     return (
       <tr className="todoListRow" key={this.state.idx}>
-        <td className="tableText dateField">{this.props.date}</td>
-        <td className="tableText categoryField">{this.props.category}</td>
-        <td className="tableText descriptionField">{this.props.description}</td>
+        <td className="tableText dateField">{todo.date}</td>
+        <td className="tableText categoryField">{todo.category}</td>
+        <td className="tableText descriptionField">{todo.description}</td>
         <td className="tableText deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
           <input type="submit" className="deleteTodoButton" value="Delete:)" onClick={this.handleDelete}></input>
         </td>
@@ -96,7 +97,7 @@ class TodoListBody extends React.Component {
     return (
       <tbody className="todoListBody">
         {this.props.todos.map((todo, index) => 
-          {return <TodoListBodyRow id={index} date={todo.date} category={todo.category} description={todo.description} deleteTodo={this.props.deleteTodo}/>}
+          {return <TodoListBodyRow id={index} todo={todo} deleteTodo={this.props.deleteTodo}/>}
         )}
       </tbody>
     )
