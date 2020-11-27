@@ -56,9 +56,11 @@ class TodoListHeaderRow extends React.Component {
   render() {
     return (
       <tr className="todoListHeaderRow">
-        <th className="tableHeaderText dateHeader">Date</th>
-        <th className="tableHeaderText categoryHeader">Category</th>
-        <th className="tableHeaderText descriptionHeader">Description</th>
+        <th className="tableHeaderText tableCell checkboxHeaderCell">Completed</th>
+        <th className="tableHeaderText tableCell dateHeaderCell">Date</th>
+        <th className="tableHeaderText tableCell categoryHeaderCell">Category</th>
+        <th className="tableHeaderText tableCell descriptionHeaderCell">Description</th>
+        <th className="tableHeaderInvis tableCell deleteHeaderCell"></th>
       </tr>
     )  
   }
@@ -85,13 +87,13 @@ class TodoListBodyRow extends React.Component {
     let todo = this.state.todo;
     return (
       <tr className="todoListRow" key={this.state.idx}>
-        <td className="tableCell completedCheckbox">
-          <input type="checkbox" className="checkbox" id="completedCheckbox" onClick={this.markTodoCompleted}></input>
+        <td className="tableBodyCell tableCell completedCheckboxCell">
+          <input type="checkbox" className="completedCheckbox" id="completedCheckbox" onClick={this.markTodoCompleted}></input>
         </td>
-        <td className="tableCell dateField">{todo.date}</td>
-        <td className="tableCell categoryField">{todo.category}</td>
-        <td className="tableCell descriptionField">{todo.description}</td>
-        <td className="tableCell deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
+        <td className="tableBodyCell tableCell dateField">{todo.date}</td>
+        <td className="tableBodyCell tableCell categoryField">{todo.category}</td>
+        <td className="tableBodyCell tableCell descriptionField">{todo.description}</td>
+        <td className="tableBodyCell tableCell deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
           <input type="submit" className="deleteTodoButton" value="Delete" onClick={this.handleDelete}></input>
         </td>
 
@@ -147,12 +149,16 @@ class TodoList extends React.Component {
 
   render() {
     return (
-      <div className="TodoListContainer">
-        <table className="todoList">
-          <TodoListHeader />
-          <TodoListBody deleteTodo={this.deleteTodo} todos={this.state.todos}/>
-        </table>
-        <TodoListAddEntryForm addTodo={this.addTodo}/>
+      <div className="todoListContainer">
+        <div className="todoListDiv">
+          <table className="todoListTable">
+            <TodoListHeader />
+            <TodoListBody deleteTodo={this.deleteTodo} todos={this.state.todos}/>
+          </table>
+        </div>
+        <div className="entryFormDiv">
+          <TodoListAddEntryForm addTodo={this.addTodo}/>
+        </div>
       </div>
     )
   }

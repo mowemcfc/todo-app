@@ -1,0 +1,54 @@
+body {
+    background-color:#cafbfc;
+}
+
+.tableHeaderText {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.tableCell {
+    height: 2.5vh;
+    width: 25vh;
+    overflow-wrap: break-word;
+    word-wrap: break-all;
+}
+
+.tableBodyCell {
+    border-collapse: collapse;
+    border:none;
+}
+
+.deleteHeaderCell {
+    border: none;
+}
+
+.deleteButtonCell {
+    border: none;
+}
+
+.todoListTable {
+    margin:auto;
+}
+
+.entryFormDiv {
+    text-align:center;
+    margin-right:100px;
+}
+
+.completedCheckboxCell {
+    border: none;
+    display:flex;
+    height:2.5vh;
+    width:5vh;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+}
+
+.checkboxHeaderCell {
+    height:2.5vh;
+    width:5vh;
+}
+
+
