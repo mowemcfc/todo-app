@@ -69,11 +69,16 @@ class TodoListBodyRow extends React.Component {
     super(props);
     this.state = {idx: this.props.id, todo: this.props.todo};
     this.handleDelete = this.handleDelete.bind(this);
+    this.markTodoCompleted = this.markTodoCompleted.bind(this);
   }
 
   handleDelete(e) {
     this.props.deleteTodo(this.state.idx);
     e.preventDefault();
+  }
+
+  markTodoCompleted(e) {
+    return;
   }
 
   render() {
