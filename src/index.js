@@ -38,12 +38,12 @@ class TodoListAddEntryForm extends React.Component {
       <form className="todoListAddEntryForm Form" onSubmit={this.handleSubmit}>
         <label>
           Category
-          <input type="text" value={this.state.category} onChange={this.handleCategoryChange} id="category" name="category"></input>
+          <input type="text" className="addEntryFormCatInput" value={this.state.category} onChange={this.handleCategoryChange} id="category" name="category"></input>
         </label>
 
         <label >
           Description
-          <input type="text" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
+          <input type="text" className="addEntryFormDescInput" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
          </label>
 
         <input type="submit" value="Add" />
@@ -56,7 +56,7 @@ class TodoListHeaderRow extends React.Component {
   render() {
     return (
       <tr className="todoListHeaderRow">
-        <th className="tableHeaderText tableCell checkboxHeaderCell">Completed</th>
+        <th className="tableHeaderText tableCell checkboxHeaderCell"></th>
         <th className="tableHeaderText tableCell dateHeaderCell">Date</th>
         <th className="tableHeaderText tableCell categoryHeaderCell">Category</th>
         <th className="tableHeaderText tableCell descriptionHeaderCell">Description</th>
@@ -94,7 +94,7 @@ class TodoListBodyRow extends React.Component {
         <td className="tableBodyCell tableCell categoryField">{todo.category}</td>
         <td className="tableBodyCell tableCell descriptionField">{todo.description}</td>
         <td className="tableBodyCell tableCell deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
-          <input type="submit" className="deleteTodoButton" value="Delete" onClick={this.handleDelete}></input>
+          <input type="image" src="/static/redcross.png" alt="Delete" className="deleteTodoButton" onClick={this.handleDelete}></input>
         </td>
 
       </tr> 

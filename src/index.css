@@ -9,7 +9,9 @@ body {
 
 .tableCell {
     height: 2.5vh;
-    width: 25vh;
+    width: 15vw;
+    max-height: 2.5vh;
+    max-width: 15vw;
     overflow-wrap: break-word;
     word-wrap: break-all;
 }
@@ -33,22 +35,31 @@ body {
 
 .entryFormDiv {
     text-align:center;
-    margin-right:100px;
+    margin-right:175px;
 }
 
 .completedCheckboxCell {
     border: none;
-    display:flex;
+    display:inline-block;
     height:2.5vh;
-    width:5vh;
+    width:1.5vw;
     justify-content: center;
     align-items: center;
     margin:auto;
+    margin-top:50%;
 }
 
 .checkboxHeaderCell {
+    border:none;
     height:2.5vh;
-    width:5vh;
+    width:1.5vh;
 }
 
+.addEntryFormSubmit {
+
+}
+
+.dateField .dateHeaderCell {
+    margin-top: 50%;
+}
 
