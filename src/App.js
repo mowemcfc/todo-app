@@ -3,8 +3,6 @@ import { Modal, FormControl, Box, Link, Button, Container, Typography, InputLabe
 import { CardHeader } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import './index.css'
-import { AutoInit } from 'materialize-css';
-import { findByLabelText } from '@testing-library/react';
 
 
 function getModalStyle() {
@@ -30,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
       alignSelf: 'center'
     },
     modal: {
-        display: 'flex',
+        marginLeft: '40%',
+        marginTop: '10%'
     }
 }));
 
@@ -60,7 +59,7 @@ const SimpleModal = () => {
                 <InputLabel htmlFor="description-input">Task Description</InputLabel>
                 <Input id="description-input" aria-describedby="description-helper-text" />
                 <FormHelperText id="description-helper-text"> Give a brief description of the task to be completed :)</FormHelperText>
-                <Button type="submit" variant="containedSecondary" onClick={handleSubmit} value="Submit">:D</Button>
+                <Button type="submit" variant="containedSecondary" onClick={handleSubmit} value="Submit">Create</Button>
             </FormControl>
         </div>
     )
@@ -68,7 +67,7 @@ const SimpleModal = () => {
     return (
         <div className="modalDiv">
             <Button variant="contained" onClick={handleOpen} color="secondary">
-                Modal :D
+                New
             </Button>
             <Modal
                 className={classes.modal}
