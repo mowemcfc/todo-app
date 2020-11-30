@@ -3,6 +3,8 @@ import { Modal, FormControl, Box, Link, Button, Container, Typography, InputLabe
 import { CardHeader } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import './index.css'
+import { AutoInit } from 'materialize-css';
+import { findByLabelText } from '@testing-library/react';
 
 
 function getModalStyle() {
@@ -23,22 +25,15 @@ const useStyles = makeStyles((theme) => ({
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
+      alignItems: 'center', 
+      justifySelf: 'center',
+      alignSelf: 'center'
     },
+    modal: {
+        display: 'flex',
+    }
 }));
 
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-;
 
 const SimpleModal = () => {
     const [open, setOpen] = React.useState(false);
@@ -65,8 +60,7 @@ const SimpleModal = () => {
                 <InputLabel htmlFor="description-input">Task Description</InputLabel>
                 <Input id="description-input" aria-describedby="description-helper-text" />
                 <FormHelperText id="description-helper-text"> Give a brief description of the task to be completed :)</FormHelperText>
-
-                <Button type="submit" onClick={handleSubmit} value="Submit"></Button>
+                <Button type="submit" variant="containedSecondary" onClick={handleSubmit} value="Submit">:D</Button>
             </FormControl>
         </div>
     )
@@ -77,6 +71,7 @@ const SimpleModal = () => {
                 Modal :D
             </Button>
             <Modal
+                className={classes.modal}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="simple-modal-title"
@@ -99,7 +94,6 @@ export default function App() {
         <Typography variant="h4" component="h1" gutterBottom>
           Create React App v4-beta example
         </Typography>
-        <Copyright />
       </Box>
     </Container>
   );
