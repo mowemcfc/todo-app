@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css'
-
+import './index.css';
+import './checkbox.css';
+import deleteImg from './static/images/redcross.png'
 //TODO: fix 'each child in a list should have a unique key prop' issue
 
 class TodoListAddEntryForm extends React.Component {
@@ -17,7 +18,7 @@ class TodoListAddEntryForm extends React.Component {
 
   handleSubmit(e) {
     const todo = {
-      date: new Date().toDateString(),
+      date: new Date().toDateString().substr(3,7),
       category: this.state.category,
       description: this.state.description
     }
@@ -35,18 +36,14 @@ class TodoListAddEntryForm extends React.Component {
 
   render() {
     return (
-      <form className="todoListAddEntryForm Form" onSubmit={this.handleSubmit}>
-        <label>
-          Category
-          <input type="text" className="addEntryFormCatInput" value={this.state.category} onChange={this.handleCategoryChange} id="category" name="category"></input>
-        </label>
+      <form className="addEntryForm Form" onSubmit={this.handleSubmit} >
 
         <label >
           Description
-          <input type="text" className="addEntryFormDescInput" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
+          <input type="text" className="addEntryDescInput" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
          </label>
 
-        <input type="submit" value="Add" />
+        <input className="formSubmitButton" type="submit" value="Add" />
       </form>
     )
   }
@@ -57,8 +54,7 @@ class TodoListHeaderRow extends React.Component {
     return (
       <tr className="todoListHeaderRow">
         <th className="tableHeaderText tableCell checkboxHeaderCell"></th>
-        <th className="tableHeaderText tableCell dateHeaderCell">Date</th>
-        <th className="tableHeaderText tableCell categoryHeaderCell">Category</th>
+        <th className="tableHeaderText tableCell dateHeaderCell">Added</th>
         <th className="tableHeaderText tableCell descriptionHeaderCell">Description</th>
         <th className="tableHeaderInvis tableCell deleteHeaderCell"></th>
       </tr>
@@ -91,10 +87,9 @@ class TodoListBodyRow extends React.Component {
           <input type="checkbox" className="completedCheckbox" id="completedCheckbox" onClick={this.markTodoCompleted}></input>
         </td>
         <td className="tableBodyCell tableCell dateField">{todo.date}</td>
-        <td className="tableBodyCell tableCell categoryField">{todo.category}</td>
         <td className="tableBodyCell tableCell descriptionField">{todo.description}</td>
-        <td className="tableBodyCell tableCell deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
-          <input type="image" src="/static/redcross.png" alt="Delete" className="deleteTodoButton" onClick={this.handleDelete}></input>
+        <td className="tableCell deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
+          <input type="image" src={deleteImg} alt="Delete" className="deleteTodoButton" onClick={this.handleDelete}></input>
         </td>
 
       </tr> 
@@ -141,7 +136,6 @@ class TodoList extends React.Component {
   }
 
   deleteTodo(index) {
-    console.log(index);
     delete this.state.todos[index];
     this.setState({todos: this.state.todos});
     reload(this.state.todos);

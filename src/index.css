@@ -1,5 +1,7 @@
 body {
-    background-color:#cafbfc;
+    background-color:#212121;
+    color: white;
+    font: 24px/1.4 "RobotoDraft", sans-serif;
 }
 
 .tableHeaderText {
@@ -19,6 +21,7 @@ body {
 .tableBodyCell {
     border-collapse: collapse;
     border:none;
+    text-align: center;
 }
 
 .deleteHeaderCell {
@@ -55,11 +58,20 @@ body {
     width:1.5vh;
 }
 
-.addEntryFormSubmit {
+.formSubmitButton {
+    border-radius:25px;
+    background-color: 'red';
+}
 
+.deleteTodoButton {
+    height: 20px;
+    width: 20px;
 }
 
 .dateField .dateHeaderCell {
     margin-top: 50%;
 }
 
+.addEntryForm {
+    margin-top:20px;
+}
