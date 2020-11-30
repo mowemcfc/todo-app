@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './checkbox.css';
 import deleteImg from './static/images/redcross.png'
 //TODO: fix 'each child in a list should have a unique key prop' issue
 
