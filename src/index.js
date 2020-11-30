@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'materialize-css';
-import {Modal, Button, Card, Row, Col} from 'react-materialize';
-import App from "./App";
+import App from "./App.js";
+import { Button } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles/';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from './theme';
 
 
 ReactDOM.render(
-  <App />,
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
   document.getElementById('root')
 )
