@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import deleteImg from './static/images/dlticon.png'
-//TODO: fix 'each child in a list should have a unique key prop' issue
 
 class TodoListAddEntryForm extends React.Component {
   constructor(props) {
@@ -55,6 +54,7 @@ class TodoListBodyRow extends React.Component {
     e.preventDefault();
   }
 
+  // not required for now - pending DB integration
   markTodoCompleted(e) {
     return;
   }
@@ -81,7 +81,7 @@ class TodoListBody extends React.Component {
     return (
       <tbody className="todoListBody">
         {this.props.todos.map((todo, index) => 
-          {return <TodoListBodyRow id={index} todo={todo} deleteTodo={this.props.deleteTodo}/>}
+          {return <TodoListBodyRow key={index} todo={todo} deleteTodo={this.props.deleteTodo}/>}
         )}
       </tbody>
     )
