@@ -7,7 +7,7 @@ import deleteImg from './static/images/redcross.png'
 class TodoListAddEntryForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {category: '', description: ''};
+    this.state = {category: '', description: 'New task'};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
@@ -37,10 +37,7 @@ class TodoListAddEntryForm extends React.Component {
     return (
       <form className="addEntryForm Form" onSubmit={this.handleSubmit} >
 
-        <label >
-          Description
-          <input type="text" className="addEntryDescInput" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
-         </label>
+        <input type="text" className="addEntryDescInput" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
 
         <input className="formSubmitButton" type="submit" value="Add" />
       </form>
@@ -52,10 +49,9 @@ class TodoListHeaderRow extends React.Component {
   render() {
     return (
       <tr className="todoListHeaderRow">
-        <th className="tableHeaderText tableCell checkboxHeaderCell"></th>
-        <th className="tableHeaderText tableCell dateHeaderCell">Added</th>
+        <th className="tableHeaderText checkboxHeaderCell"></th>
         <th className="tableHeaderText tableCell descriptionHeaderCell">Description</th>
-        <th className="tableHeaderInvis tableCell deleteHeaderCell"></th>
+        <th className="tableHeaderInvis deleteHeaderCell"></th>
       </tr>
     )  
   }
@@ -82,12 +78,12 @@ class TodoListBodyRow extends React.Component {
     let todo = this.state.todo;
     return (
       <tr className="todoListRow" key={this.state.idx}>
-        <td className="tableBodyCell tableCell completedCheckboxCell">
+        <td className="tableBodyCell completedCheckboxCell">
           <input type="checkbox" className="completedCheckbox" id="completedCheckbox" onClick={this.markTodoCompleted}></input>
         </td>
         <td className="tableBodyCell tableCell dateField">{todo.date}</td>
         <td className="tableBodyCell tableCell descriptionField">{todo.description}</td>
-        <td className="tableCell deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
+        <td className="deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
           <input type="image" src={deleteImg} alt="Delete" className="deleteTodoButton" onClick={this.handleDelete}></input>
         </td>
 
@@ -143,14 +139,8 @@ class TodoList extends React.Component {
   render() {
     return (
       <div className="todoListContainer">
-        <div className="todoListDiv">
-          <table className="todoListTable">
-            <TodoListHeader />
-            <TodoListBody deleteTodo={this.deleteTodo} todos={this.state.todos}/>
-          </table>
-        </div>
         <div className="entryFormDiv">
-          <TodoListAddEntryForm addTodo={this.addTodo}/>
+          <TodoListAddEntryForm />
         </div>
       </div>
     )
