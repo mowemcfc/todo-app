@@ -1,5 +1,5 @@
 body {
-    background-color:#f3e8ee;
+    background-color: #666A86;
     font: 24px/1.4 "RobotoDraft", sans-serif;
 }
 
@@ -8,7 +8,21 @@ body {
     justify-items: center;
     display:grid;
     grid-template-columns: 5% 25% 5%;
-    grid-template-rows: 10vh 70vh auto;
+    grid-template-rows: 8vh 70vh auto;
+}
+
+.todoListTable {
+    width:100%;
+    height:100%;
+    grid-row-start:2;
+    grid-column-start: 2;
+    border-radius:10px;
+    background-color:#788AA3;
+}
+
+.todoListHeaderRow {
+    height:10%;
+    width:20%;
 }
 
 .entryFormDiv {
@@ -32,6 +46,7 @@ body {
     display:grid;
     grid-template-columns: 80% 20%;
 }
+
 .addEntryDescInput {
     width: 80%;
     height: 100%;
@@ -39,10 +54,18 @@ body {
 }
 
 .formSubmitButton {
-    font-size: 75%;
+    font-size: 65%;
+    height:80%;
     border: 0;
     padding: 0;
+    margin-top:5%;
     border-radius: 10px;
     grid-column-start: 2;
+    background-color: #92B6B1;
+}
+
+.deleteTodoButton {
+    width:5%;
+    height:5%;
 }
 

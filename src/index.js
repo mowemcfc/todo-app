@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import deleteImg from './static/images/redcross.png'
+import deleteImg from './static/images/dlticon.png'
 //TODO: fix 'each child in a list should have a unique key prop' issue
 
 class TodoListAddEntryForm extends React.Component {
@@ -10,7 +10,6 @@ class TodoListAddEntryForm extends React.Component {
     this.state = {category: '', description: 'New task'};
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }  
 
@@ -18,7 +17,6 @@ class TodoListAddEntryForm extends React.Component {
   handleSubmit(e) {
     const todo = {
       date: new Date().toDateString().substr(3,7),
-      category: this.state.category,
       description: this.state.description
     }
     this.props.addTodo(todo)
@@ -45,17 +43,6 @@ class TodoListAddEntryForm extends React.Component {
   }
 }
 
-class TodoListHeaderRow extends React.Component {
-  render() {
-    return (
-      <tr className="todoListHeaderRow">
-        <th className="tableHeaderText checkboxHeaderCell"></th>
-        <th className="tableHeaderText tableCell descriptionHeaderCell">Description</th>
-        <th className="tableHeaderInvis deleteHeaderCell"></th>
-      </tr>
-    )  
-  }
-}
 
 class TodoListBodyRow extends React.Component {
   constructor(props) {
@@ -105,16 +92,6 @@ class TodoListBody extends React.Component {
 }
 
 
-class TodoListHeader extends React.Component 
-{
-  render() {
-    return (
-      <thead>
-        <TodoListHeaderRow />
-      </thead>
-    )
-  }
-}
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -127,21 +104,22 @@ class TodoList extends React.Component {
   addTodo(todo) {
     this.state.todos.push(todo);
     this.setState({todos: this.state.todos});
-    reload(this.state.todos);
   }
 
   deleteTodo(index) {
     delete this.state.todos[index];
     this.setState({todos: this.state.todos});
-    reload(this.state.todos);
   }
 
   render() {
     return (
       <div className="todoListContainer">
         <div className="entryFormDiv">
-          <TodoListAddEntryForm />
+          <TodoListAddEntryForm addTodo={this.addTodo}/>
         </div>
+        <table className="todoListTable">
+          <TodoListBody deleteTodo={this.deleteTodo} todos={this.state.todos}/>
+        </table>
       </div>
     )
   }
