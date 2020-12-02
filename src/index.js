@@ -63,7 +63,7 @@ class TodoListBodyRow extends React.Component {
     let todo = this.state.todo;
     return (
       <tr className="todoListRow" key={this.state.idx}>
-        <td className="tableBodyCell completedCheckboxCell">
+        <td className="checkboxCell">
           <input type="checkbox" className="completedCheckbox" id="completedCheckbox" onClick={this.markTodoCompleted}></input>
         </td>
         <td className="tableBodyCell tableCell dateField">{todo.date}</td>
@@ -81,7 +81,7 @@ class TodoListBody extends React.Component {
     return (
       <tbody className="todoListBody">
         {this.props.todos.map((todo, index) => 
-          {return <TodoListBodyRow key={index} todo={todo} deleteTodo={this.props.deleteTodo}/>}
+          {return <TodoListBodyRow key={index} id={index} todo={todo} deleteTodo={this.props.deleteTodo}/>}
         )}
       </tbody>
     )
