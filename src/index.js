@@ -34,9 +34,7 @@ class TodoListAddEntryForm extends React.Component {
   render() {
     return (
       <form className="addEntryForm Form" onSubmit={this.handleSubmit} >
-
         <input type="text" className="addEntryDescInput" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
-
         <input className="formSubmitButton" type="submit" value="Add" />
       </form>
     )
@@ -73,7 +71,6 @@ class TodoListBodyRow extends React.Component {
         <td className="deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
           <input type="image" src={deleteImg} alt="Delete" className="deleteTodoButton" onClick={this.handleDelete}></input>
         </td>
-
       </tr> 
     )  
   }
@@ -124,14 +121,6 @@ class TodoList extends React.Component {
     )
   }
 }
-
-function reload(todos) {
-  ReactDOM.render(
-    <TodoList todos={todos}/>,
-    document.getElementById('root')
-  )
-}
-
 
 ReactDOM.render(
     <TodoList />,
