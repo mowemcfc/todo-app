@@ -49,6 +49,16 @@ body {
 .deleteTodoButton {
     width:20px;
     height:20px;
+    border:none;
+    background:rgba(0,0,0,0);
+    cursor:pointer;
+    background-image: url(./static/images/dlticon.png);
+    background-size: 20px 20px;
+}
+
+.deleteTodoButtonCell {
+    width:10%;
+    height:20%;
 }
 
 .dateField {
@@ -69,10 +79,6 @@ body {
     height:20%;
 }
 
-.deleteTodoButtonCell {
-    width:10%;
-    height:20%;
-}
 .addEntryForm {
     margin: auto;
     width: 100%;

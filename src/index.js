@@ -33,8 +33,8 @@ class TodoListAddEntryForm extends React.Component {
   render() {
     return (
       <form className="addEntryForm Form" onSubmit={this.handleSubmit} >
-        <input type="text" className="addEntryDescInput" value = {this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
-        <input className="formSubmitButton" type="submit" value="Add" />
+        <input type="text" className="addEntryDescInput" value={this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
+        <button className="formSubmitButton" type="submit"> Add </button>
       </form>
     )
   }
@@ -69,7 +69,7 @@ class TodoListBodyRow extends React.Component {
         <td className="tableBodyCell tableCell dateField">{todo.date}</td>
         <td className="tableBodyCell tableCell descriptionField">{todo.description}</td>
         <td className="deleteButtonCell deleteTodoButtonCell" id="deleteTodoButtonCell" >
-          <input type="image" src={deleteImg} alt="Delete" className="deleteTodoButton" onClick={this.handleDelete}></input>
+          <button className="deleteTodoButton" onClick={this.handleDelete}></button>
         </td>
       </tr> 
     )  
@@ -87,8 +87,6 @@ class TodoListBody extends React.Component {
     )
   }
 }
-
-
 
 class TodoList extends React.Component {
   constructor(props) {
