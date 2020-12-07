@@ -1,43 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import deleteImg from './static/images/dlticon.png';
 import TodoListAddEntryForm from './components/Form.js';
 import {TodoListBody} from './components/TodoList.js'
 
-class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {todos: []};
-    this.addTodo = this.addTodo.bind(this);
-    this.deleteTodo = this.deleteTodo.bind(this);
-  }  
+function TodoList() { 
 
-  addTodo(todo) {
-    this.state.todos.push(todo);
-    this.setState({todos: this.state.todos});
-  }
+  const [todos, setTodos] = useState([]);
 
-  deleteTodo(index) {
-    delete this.state.todos[index];
-    this.setState({todos: this.state.todos});
-  }
+  const addTodo = (todo) => {
+    setTodos([...todos, todo]);
+  };
 
-  render() {
-    return (
-      <div className="todoListContainer">
-        <div className="entryFormDiv">
-          <TodoListAddEntryForm addTodo={this.addTodo}/>
-        </div>
-        <table className="todoListTable">
-          <TodoListBody deleteTodo={this.deleteTodo} todos={this.state.todos}/>
-        </table>
+  const deleteTodo = (index) => {
+    let todosCopy = [...todos];
+    todosCopy.splice(index, 1);
+    setTodos(todosCopy);
+  };
+
+  return (
+    <div className="todoListContainer">
+      <div className="entryFormDiv">
+        <TodoListAddEntryForm addTodo={addTodo}/>
       </div>
-    )
-  }
+      <table className="todoListTable">
+        <TodoListBody deleteTodo={deleteTodo} todos={todos}/>
+      </table>
+    </div>
+  )
 }
 
+const todoList = <TodoList />
 ReactDOM.render(
-    <TodoList />,
+    todoList,
     document.getElementById('root')
 )

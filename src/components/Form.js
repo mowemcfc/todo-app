@@ -1,41 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../index.css';
 
-class TodoListAddEntryForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {category: '', description: 'New task'};
+function TodoListAddEntryForm(props) { 
+  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState('');
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-  }  
-
-
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     const todo = {
       date: new Date().toDateString().substr(3,7),
-      description: this.state.description
+      description: description
     }
-    this.props.addTodo(todo)
+    props.addTodo(todo)
     e.preventDefault();
   }
 
-  handleCategoryChange(e) {
-    this.setState({category: e.target.value});
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
   }
 
-  handleDescriptionChange(e) {
-    this.setState({description: e.target.value})
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
   }
 
-  render() {
     return (
-      <form className="addEntryForm Form" onSubmit={this.handleSubmit} >
-        <input type="text" className="addEntryDescInput" value={this.state.description} onChange={this.handleDescriptionChange} id="description" name="description"></input>
+        <form className="addEntryForm Form" onSubmit={handleSubmit} >
+        <input type="text" className="addEntryDescInput" onChange={handleDescriptionChange} id="description" name="description"></input>
         <button className="formSubmitButton" type="submit"> Add </button>
-      </form>
+        </form>
     )
-  }
 }
 
 export default TodoListAddEntryForm;
