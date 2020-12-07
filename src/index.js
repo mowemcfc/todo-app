@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import deleteImg from './static/images/dlticon.png';
 import TodoListAddEntryForm from './components/Form.js';
-import {TodoListBody} from './components/TodoTable.js'
+import {TodoListBody} from './components/TodoList.js'
 
 class TodoList extends React.Component {
   constructor(props) {
