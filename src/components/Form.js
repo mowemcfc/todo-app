@@ -24,8 +24,8 @@ function TodoListAddEntryForm(props) {
 
     return (
         <form className="addEntryForm Form" onSubmit={handleSubmit} >
-        <input type="text" className="addEntryDescInput" onChange={handleDescriptionChange} id="description" name="description"></input>
-        <button className="formSubmitButton" type="submit"> Add </button>
+            <input type="text" className="addEntryDescInput" onChange={handleDescriptionChange} id="description" name="description"></input>
+            <button className="formSubmitButton" type="submit"> Add </button>
         </form>
     )
 }
