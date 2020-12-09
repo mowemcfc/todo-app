@@ -4,15 +4,29 @@ import './index.css';
 import TodoListAddEntryForm from './components/Form.js';
 import {TodoListBody} from './components/TodoList.js'
 
+interface Todo {
+  date:string,
+  category:string,
+  description:string,
+}
+
 function TodoList() { 
 
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(
+    [
+      {
+        date: 'Nov 3',
+        category: 'Uni',
+        description: 'Sample Task'
+      }
+    ]
+  );
 
-  const addTodo = (todo) => {
+  const addTodo = (todo: Todo) => {
     setTodos([...todos, todo]);
   };
 
-  const deleteTodo = (index) => {
+  const deleteTodo = (index: number) => {
     let todosCopy = [...todos];
     todosCopy.splice(index, 1);
     setTodos(todosCopy);
@@ -30,7 +44,7 @@ function TodoList() {
   )
 }
 
-const todoList = <TodoList />
+const todoList = <TodoList />;
 ReactDOM.render(
     todoList,
     document.getElementById('root')

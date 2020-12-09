@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '../index.css';
 
 function TodoListAddEntryForm(props) { 
-  const [category, setCategory] = useState('');
-  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('School');
+  const [description, setDescription] = useState('Sample task');
 
   const handleSubmit = (e) => {
     const todo = {
