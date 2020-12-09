@@ -1,18 +1,19 @@
 import React, { useState }  from 'react';
+import { Todo } from '../index';
 import '../index.css';
 
-function TodoListBodyRow(props) { 
+function TodoListBodyRow(props: {key: number, todo: Todo, id: number, deleteTodo: any}) { 
 
   const [todoIndex, setIndex] = useState(props.id);
   const [todo, setTodo] = useState(props.todo);
 
-  const handleDelete = (e) => {
+  const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
     props.deleteTodo(todoIndex);
   }
 
   // not required for now - pending DB integration
-  const markTodoCompleted = (e) => {
+  const markTodoCompleted = (e: React.MouseEvent) => {
     return;
   }
 
@@ -30,7 +31,7 @@ function TodoListBodyRow(props) {
   )  
 }
 
-function TodoListBody(props) {
+function TodoListBody(props: {todos: Todo[], deleteTodo: any}) {
   return (
     <tbody className="todoListBody">
       {props.todos.map((todo, index) => 

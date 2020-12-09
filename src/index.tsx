@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import TodoListAddEntryForm from './components/Form.js';
-import {TodoListBody} from './components/TodoList.js'
+import {TodoListBody} from './components/TodoList'
 
-interface Todo {
+export interface Todo {
   date:string,
   category:string,
   description:string,
