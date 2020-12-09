@@ -2,7 +2,14 @@ import React, { useState }  from 'react';
 import { Todo } from '../index';
 import '../index.css';
 
-function TodoListBodyRow(props: {key: number, todo: Todo, id: number, deleteTodo: any}) { 
+interface RowProps {
+  key: number,
+  todo: Todo,
+  id: number,
+  deleteTodo: any
+}
+
+function TodoListBodyRow(props: RowProps) { 
 
   const [todoIndex, setIndex] = useState(props.id);
   const [todo, setTodo] = useState(props.todo);
@@ -31,7 +38,12 @@ function TodoListBodyRow(props: {key: number, todo: Todo, id: number, deleteTodo
   )  
 }
 
-function TodoListBody(props: {todos: Todo[], deleteTodo: any}) {
+interface BodyProps {
+  todos: Todo[],
+  deleteTodo: any
+}
+
+function TodoListBody(props: BodyProps) {
   return (
     <tbody className="todoListBody">
       {props.todos.map((todo, index) => 

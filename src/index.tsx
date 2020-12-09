@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TodoListAddEntryForm from './components/Form.js';
+import TodoListAddEntryForm from './components/Form';
 import {TodoListBody} from './components/TodoList'
 
 export interface Todo {
